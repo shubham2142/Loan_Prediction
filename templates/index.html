@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Loan Approval System</title>
+</head>
+<body>
+    <h2>Loan Approval Form</h2>
+    <form action="/predict" method="post">
+
+        Gender (1=Male, 0=Female): <input name="Gender"><br><br>
+        Married (1=Yes, 0=No): <input name="Married"><br><br>
+        Dependents: <input name="Dependents"><br><br>
+        Education (1=Graduate, 0=Not): <input name="Education"><br><br>
+        Self Employed (1=Yes, 0=No): <input name="Self_Employed"><br><br>
+
+        Applicant Income: <input name="ApplicantIncome"><br><br>
+        Coapplicant Income: <input name="CoapplicantIncome"><br><br>
+        Loan Amount: <input name="LoanAmount"><br><br>
+        Loan Term: <input name="Loan_Amount_Term"><br><br>
+        Credit History (1/0): <input name="Credit_History"><br><br>
+        Property Area (0=Rural,1=Semiurban,2=Urban): <input name="Property_Area"><br><br>
+
+        <button type="submit">Predict</button>
+    </form>
+</body>
+</html>
