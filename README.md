@@ -1,94 +1,138 @@
-# 🏦 Loan Approval System with Risk Scoring
+﻿# 🏦 Loan Approval System with Risk Scoring
 
-An end-to-end **Machine Learning + Flask** web application that predicts
-loan approval status and calculates applicant risk score based on
-financial and personal details.
+An end-to-end **Machine Learning + Flask** web application that predicts **loan approval status** and calculates an applicant **risk score (0–100%)** based on financial and personal details.
 
 ---
 
 ## 📌 Project Overview
 
-This project uses **Machine Learning classification models** to determine
-whether a loan application should be **Approved or Rejected**.
-Additionally, a **risk score (0–100%)** is generated using prediction
-probability to help understand applicant risk level.
+This project demonstrates the complete lifecycle of a machine learning system:
 
-The trained model is deployed using a **Flask web application** with a
-clean and user-friendly interface.
+* Data preprocessing and feature engineering
+* Training and evaluation of classification models
+* Model selection and persistence
+* Deployment as a **Flask web application** with a clean, user-friendly UI
+
+The application predicts whether a loan should be **Approved or Rejected** and provides a **risk score** derived from model prediction probability to help interpret applicant risk.
 
 ---
 
 ## 🧠 Problem Statement
 
-To predict loan approval status using applicant data such as income,
-credit history, education, employment type, and property area.
+Predict loan approval using applicant information such as income, credit history, education, employment type, and property area.
 
-**Type of Problem:**  
-- Supervised Machine Learning  
-- Binary Classification
+**Problem Type:**
+
+* Supervised Machine Learning
+* Binary Classification
+
+**Target Variable:**
+
+* `Loan_Status` → Approved / Rejected
 
 ---
 
 ## 📊 Dataset
 
-- Source: Loan Approval Dataset (CSV)
-- Records: ~600 loan applications
-- Features:
-  - Gender
-  - Married
-  - Dependents
-  - Education
-  - Self Employed
-  - Applicant Income
-  - Coapplicant Income
-  - Loan Amount
-  - Loan Amount Term
-  - Credit History
-  - Property Area
+* **Source:** Loan Approval Dataset (CSV)
 
-- Target:
-  - Loan_Status (Approved / Rejected)
+* **Records:** ~600 loan applications
+
+* **Features:**
+
+  * Gender
+  * Married
+  * Dependents
+  * Education
+  * Self_Employed
+  * ApplicantIncome
+  * CoapplicantIncome
+  * LoanAmount
+  * Loan_Amount_Term
+  * Credit_History
+  * Property_Area
+
+* **Target:**
+
+  * `Loan_Status`
+
+Dataset file location:
+
+```
+data/Loan-Approval-Prediction.csv
+```
 
 ---
 
 ## ⚙️ Machine Learning Pipeline
 
-1. Data collection and loading  
-2. Data cleaning and missing value handling  
-3. Encoding categorical variables  
-4. Feature engineering (Total Income, Loan-Income Ratio)  
-5. Train–test split  
-6. Model training (Logistic Regression, Random Forest)  
-7. Hyperparameter tuning (GridSearchCV)  
-8. Model evaluation (Accuracy, ROC-AUC, Confusion Matrix)  
-9. Model saving using `joblib`  
-10. Deployment using Flask  
+1. Data loading and inspection
+2. Missing value handling
+3. Encoding of categorical variables
+4. Feature engineering
+
+   * Total Income
+   * Loan–Income Ratio
+5. Train–test split
+6. Model training
+
+   * Logistic Regression
+   * Random Forest
+7. Hyperparameter tuning using `GridSearchCV`
+8. Model evaluation
+
+   * Accuracy
+   * ROC-AUC
+   * Confusion Matrix
+9. Model persistence using `joblib`
+10. Deployment with Flask
 
 ---
 
 ## 🧪 Models Used
 
-| Model | Description |
-|-----|------------|
-| Logistic Regression | Baseline binary classification model |
-| Random Forest | Advanced ensemble model |
-| Tuned Random Forest | Best performing model |
+| Model               | Purpose                                 |
+| ------------------- | --------------------------------------- |
+| Logistic Regression | Baseline binary classifier              |
+| Random Forest       | Ensemble model for improved performance |
+| Tuned Random Forest | Best-performing model (final)           |
+
+Saved model artifacts:
+
+* `logistic_model.pkl`
+* `best_loan_model.pkl`
+* `scaler.pkl`
+
+---
+
+## 📈 Risk Scoring Logic
+
+* The **risk score (0–100%)** is derived from the model's predicted probability.
+* Higher probability of rejection → higher risk score.
+
+**Risk Categories:**
+
+* **Low Risk:** High approval probability
+* **Medium Risk:** Moderate approval probability
+* **High Risk:** Low approval probability
 
 ---
 
 ## 🌐 Web Application Features
 
-- Loan application form
-- Real-time prediction
-- Risk score calculation
-- Risk category (Low / Medium / High)
-- Clean & responsive UI
-- Flask-based backend
+* Loan application input form
+* Real-time prediction results
+* Loan decision: **Approved / Rejected**
+* Risk score visualization
+* Risk category (Low / Medium / High)
+* Clean and responsive user interface
+* Flask-based backend
 
 ---
 
 ## 🗂️ Project Structure
 
+```
 Loan_Approval/
 │
 ├── app.py
@@ -96,43 +140,71 @@ Loan_Approval/
 ├── requirements.txt
 │
 ├── data/
-│ └── Loan-Approval-Prediction.csv
+│   └── Loan-Approval-Prediction.csv
 │
 ├── notebooks/
-│ └── loan_model_training.ipynb
+│   └── loan_model_training.ipynb
 │
 ├── model/
-│ ├── logistic_model.pkl
-│ ├── best_loan_model.pkl
-│ └── scaler.pkl
+│   ├── logistic_model.pkl
+│   ├── best_loan_model.pkl
+│   └── scaler.pkl
 │
 ├── templates/
-│ ├── index.html
-│ └── result.html
+│   ├── index.html
+│   └── result.html
 │
 └── static/
-└── style.css
-
+    └── style.css
+```
 
 ---
 
-## ▶️ How to Run the Project
+## ▶️ How to Run the Project (Windows)
 
-```bash
+```powershell
+# 1️⃣ Clone the repository
+git clone https://github.com/shubham2142/Loan_Prediction.git
 
-1️⃣ Clone Repository
-git clone hhttps://github.com/shubham2142/Loan_Prediction
-2️⃣ Create Virtual Environment
+# 2️⃣ Create a virtual environment
 python -m venv venv
-venv\Scripts\activate   # Windows
-3️⃣ Install Dependencies
-pip install -r requirements.txt
-4️⃣ Run Flask App
-python app.py
-5️⃣ Open Browser
-http://127.0.0.1:5000
 
-📈 Sample Output
-Loan Decision: Approved / Rejected
-Risk Score: 0–100%
-Risk Category: Low / Medium / High
+# 3️⃣ Activate the virtual environment
+venv\Scripts\activate
+
+# 4️⃣ Install dependencies
+pip install -r requirements.txt
+
+# 5️⃣ Run the Flask application
+python app.py
+
+# 6️⃣ Open the app in your browser
+http://127.0.0.1:5000
+```
+
+---
+
+## 📌 Notes
+
+* Ensure the `model/` directory contains all trained model files before running the app.
+* If you retrain models using `notebooks/loan_model_training.ipynb`, the notebook saves updated artifacts into the `model/` folder using `joblib`.
+* Logistic Regression uses `StandardScaler`; Random Forest does not require scaling.
+
+---
+
+## 📈 Sample Output
+
+* **Loan Decision:** Approved / Rejected
+* **Risk Score:** 0–100%
+* **Risk Category:** Low / Medium / High
+
+---
+
+## 🤝 Contribution & Contact
+
+Contributions are welcome.
+
+* Open an issue for bug reports or feature requests
+* Submit a pull request for improvements
+
+For questions, please refer to the original GitHub repository or raise an issue there.
