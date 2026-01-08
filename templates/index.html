@@ -1,26 +1,103 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Loan Approval System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
-    <h2>Loan Approval Form</h2>
+<div class="container">
+    <h2>Loan Approval System</h2>
+    <div class="subtitle">Smart ML-Based Risk Analysis</div>
+
     <form action="/predict" method="post">
+        <div class="form-grid">
 
-        Gender (1=Male, 0=Female): <input name="Gender"><br><br>
-        Married (1=Yes, 0=No): <input name="Married"><br><br>
-        Dependents: <input name="Dependents"><br><br>
-        Education (1=Graduate, 0=Not): <input name="Education"><br><br>
-        Self Employed (1=Yes, 0=No): <input name="Self_Employed"><br><br>
+            <div class="form-group">
+                <label>Gender</label>
+                <select name="Gender">
+                    <option value="1">Male</option>
+                    <option value="0">Female</option>
+                </select>
+            </div>
 
-        Applicant Income: <input name="ApplicantIncome"><br><br>
-        Coapplicant Income: <input name="CoapplicantIncome"><br><br>
-        Loan Amount: <input name="LoanAmount"><br><br>
-        Loan Term: <input name="Loan_Amount_Term"><br><br>
-        Credit History (1/0): <input name="Credit_History"><br><br>
-        Property Area (0=Rural,1=Semiurban,2=Urban): <input name="Property_Area"><br><br>
+            <div class="form-group">
+                <label>Married</label>
+                <select name="Married">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
 
-        <button type="submit">Predict</button>
+            <div class="form-group">
+                <label>Dependents</label>
+                <input type="number" name="Dependents" value="0">
+            </div>
+
+            <div class="form-group">
+                <label>Education</label>
+                <select name="Education">
+                    <option value="1">Graduate</option>
+                    <option value="0">Not Graduate</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Self Employed</label>
+                <select name="Self_Employed">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Credit History</label>
+                <select name="Credit_History">
+                    <option value="1">Good</option>
+                    <option value="0">Bad</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Applicant Income</label>
+                <input type="number" name="ApplicantIncome" value="5000">
+            </div>
+
+            <div class="form-group">
+                <label>Co-applicant Income</label>
+                <input type="number" name="CoapplicantIncome" value="2000">
+            </div>
+
+            <div class="form-group">
+                <label>Loan Amount</label>
+                <input type="number" name="LoanAmount" value="150">
+            </div>
+
+            <div class="form-group">
+                <label>Loan Term (months)</label>
+                <input type="number" name="Loan_Amount_Term" value="360">
+            </div>
+
+            <div class="form-group full">
+                <label>Property Area</label>
+                <select name="Property_Area">
+                    <option value="2">Urban</option>
+                    <option value="1">Semi-Urban</option>
+                    <option value="0">Rural</option>
+                </select>
+            </div>
+
+            <div class="form-group full">
+                <button type="submit">Check Loan Approval</button>
+            </div>
+
+        </div>
     </form>
+
+    <div class="footer">
+        © Loan Approval ML Project
+    </div>
+</div>
 </body>
 </html>

@@ -1,13 +1,97 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Result</title>
-</head>
-<body>
-    <h2>Loan Decision</h2>
-    <h3>{{ result }}</h3>
-    <p>Risk Score: {{ risk_score }}%</p>
+    <meta charset="UTF-8">
+    <title>Loan Result</title>
 
-    <a href="/">Check Another</a>
+    <!-- CSS LINK -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        .result-box {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .approved {
+            background: #e6fffa;
+            border: 2px solid #38b2ac;
+            color: #065f46;
+        }
+
+        .rejected {
+            background: #ffe6e6;
+            border: 2px solid #e53e3e;
+            color: #7f1d1d;
+        }
+
+        .risk {
+            font-size: 18px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .risk.low {
+            color: #2f855a;
+        }
+
+        .risk.medium {
+            color: #d97706;
+        }
+
+        .risk.high {
+            color: #c53030;
+        }
+
+        .back-btn {
+            margin-top: 20px;
+            display: inline-block;
+            text-decoration: none;
+            background: #4facfe;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .back-btn:hover {
+            background: #00c6fb;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Loan Decision Result</h2>
+    <div class="subtitle">Prediction based on Machine Learning</div>
+
+    {% if "APPROVED" in result %}
+    <div class="result-box approved">
+        <h3>{{ result }}</h3>
+    </div>
+    {% else %}
+    <div class="result-box rejected">
+        <h3>{{ result }}</h3>
+    </div>
+    {% endif %}
+
+    <div class="risk 
+        {% if risk_category == 'Low Risk' %}low
+        {% elif risk_category == 'Medium Risk' %}medium
+        {% else %}high{% endif %}">
+        Risk Score: {{ risk_score }}% <br>
+        Risk Category: {{ risk_category }}
+    </div>
+
+    <a href="/" class="back-btn">Check Another Application</a>
+
+    <div class="footer">
+        © Loan Approval ML Project
+    </div>
+</div>
+
 </body>
 </html>
